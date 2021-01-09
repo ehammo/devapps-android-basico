@@ -1,20 +1,24 @@
-package com.pethersilva.devapps20201_helloworld
+package cesar.school.devapps20211_helloworld
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import cesar.school.devapps20211_helloworld.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 	companion object {
 		const val MAIN_ACTIVITY_NAME_EXTRA_ID = "name"
 	}
+
+	private lateinit var binding : ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-		button.setOnClickListener {
-			val name = editTextTextPersonName.text.toString()
+		binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+		binding.button.setOnClickListener {
+			val name = binding.editTextTextPersonName.text.toString()
 			if (isNameValid(name)) {
 				val secondActivity = Intent(this, SecondActivity::class.java)
 				secondActivity.putExtra(MAIN_ACTIVITY_NAME_EXTRA_ID, name)
