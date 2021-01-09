@@ -25,13 +25,13 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	private fun createAlarm(mensagem: String, hora: Int, minutos: Int) {
-		val intentAlarme = Intent(AlarmClock.ACTION_SET_ALARM)
-		intentAlarme.putExtra(AlarmClock.EXTRA_MESSAGE, mensagem)
-		intentAlarme.putExtra(AlarmClock.EXTRA_HOUR, hora)
-		intentAlarme.putExtra(AlarmClock.EXTRA_MINUTES, minutos)
-
-		if (intentAlarme.resolveActivity(packageManager) != null) {
-			startActivity(intentAlarme)
+		val intent = Intent(AlarmClock.ACTION_SET_ALARM).apply {
+			putExtra(AlarmClock.EXTRA_MESSAGE, mensagem)
+			putExtra(AlarmClock.EXTRA_HOUR, hora)
+			putExtra(AlarmClock.EXTRA_MINUTES, minutos)
+		}
+		if (intent.resolveActivity(packageManager) != null) {
+			startActivity(intent)
 		} else {
 			Toast.makeText(this, "Não foi encontrado uma activity para o " +
 					"intent filter escolhido",Toast.LENGTH_SHORT).show()

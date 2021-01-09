@@ -3,6 +3,11 @@
 	package="cesar.school.devapps20211_helloworld">
 
 	<uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+	<queries>
+		<intent>
+			<action android:name="android.intent.action.SET_ALARM" />
+		</intent>
+	</queries>
 
 	<application
 		android:allowBackup="true"
