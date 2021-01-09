@@ -16,22 +16,24 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	private lateinit var binding : ActivityMainBinding
+	private var savedValue = 0
+	private var currentResult = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
-
-		binding.buttonSum.setOnClickListener {
+		binding.buttonSet.setOnClickListener {
 			val value01 = binding.editTextValue01.text.toString()
+			if (isValid(value01)) {
+				savedValue = value01.toInt()
+			}
+		}
+		binding.buttonSum.setOnClickListener {
 			val value02 = binding.editTextValue02.text.toString()
-			if (isValid(value01) && isValid(value02)) {
-				val secondActivity = Intent(this, SecondActivity::class.java)
-				secondActivity.putExtra(MAIN_ACTIVITY_VALUE01_EXTRA_ID, value01)
-				secondActivity.putExtra(MAIN_ACTIVITY_VALUE02_EXTRA_ID, value02)
-				startActivityForResult(secondActivity, MAIN_ACTIVITY_SUM_REQUEST_CODE)
-			} else {
-				Toast.makeText(this, "Please inform values", Toast.LENGTH_SHORT).show()
+			if (isValid(value02)) {
+				currentResult += value02.toInt() + savedValue
+				binding.result.text = "Result: $currentResult"
 			}
 		}
 	}

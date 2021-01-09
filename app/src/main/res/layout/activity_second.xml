@@ -4,7 +4,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="com.pethersilva.devapps20201_helloworld.SecondActivity">
+	tools:context=".SecondActivity">
 
 	<TextView
 		android:id="@+id/textView"
@@ -21,5 +21,5 @@
 		android:layout_height="wrap_content"
 		android:text="@string/second_activity_return"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toBottomOf="@+id/textView" />
+		app:layout_constraintTop_toBottomOf="@+id/result" />
 </androidx.constraintlayout.widget.ConstraintLayout>

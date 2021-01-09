@@ -11,8 +11,9 @@
 
 	<string name="please_add_value01" translatable="false">Valor 1</string>
 	<string name="please_add_value02" translatable="false">Valor 2</string>
-	<string name="button_sum" translatable="false">For Result</string>
-
+	<string name="result" translatable="false">Result: </string>
+	<string name="button_sum" translatable="false">Add</string>
+	<string name="button_set" translatable="false">Set</string>
 	<string name="second_activity_return" translatable="false">Result</string>
 
 </resources>
