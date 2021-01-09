@@ -1,4 +1,4 @@
-package com.pethersilva.devapps20201_helloworld.adapter
+package cesar.school.devapps20211_helloworld.adapter
 
 import android.content.Context
 import android.content.res.TypedArray
@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.pethersilva.devapps20201_helloworld.R
-import com.pethersilva.devapps20201_helloworld.model.Estado
-import kotlinx.android.synthetic.main.item_estado.view.*
+import cesar.school.devapps20211_helloworld.R
+import cesar.school.devapps20211_helloworld.databinding.ItemEstadoBinding
+import cesar.school.devapps20211_helloworld.model.Estado
 
 class EstadoAdapter(private val context: Context,
 					private val estados: List<Estado>,
@@ -21,9 +21,8 @@ class EstadoAdapter(private val context: Context,
 	}
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-		val v = LayoutInflater.from(parent.context).inflate(R.layout.item_estado
-			, parent, false)
-		val vh = VH(v)
+		val binding = ItemEstadoBinding.inflate(LayoutInflater.from(parent.context))
+		val vh = VH(binding)
 		vh.itemView.setOnClickListener {
 			val estado = estados[vh.adapterPosition]
 			callback(estado)
@@ -39,7 +38,7 @@ class EstadoAdapter(private val context: Context,
 		holder.txtName.text = name
 	}
 
-	class VH(itemView: View): RecyclerView.ViewHolder(itemView) {
+	class VH(itemView: ItemEstadoBinding): RecyclerView.ViewHolder(itemView.root) {
 		val imgBandeira : ImageView = itemView.imageViewFlag
 		val txtName: TextView = itemView.textViewEstadoNome
 	}

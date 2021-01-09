@@ -1,15 +1,12 @@
 package cesar.school.devapps20211_helloworld
 
 import android.os.Bundle
-import android.os.PersistableBundle
-import android.widget.GridLayout
-import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import com.pethersilva.devapps20201_helloworld.adapter.EstadoAdapter
-import com.pethersilva.devapps20201_helloworld.model.Estado
-
+import androidx.recyclerview.widget.LinearLayoutManager
+import cesar.school.devapps20211_helloworld.adapter.EstadoAdapter
+import cesar.school.devapps20211_helloworld.model.Estado
 import cesar.school.devapps20211_helloworld.databinding.ActivityMainListviewBinding
 
 
@@ -52,8 +49,11 @@ class MainActivity : AppCompatActivity() {
 		binding.buttonInserir.setOnClickListener {
 			val name = binding.editTextPersonName.text.toString()
 			if (isNameValid(name)) {
-				listEstados.add(Estado(name, (0..2).random()))
-				mEstadoAdapter.notifyItemInserted(listEstados.lastIndex)
+				val lastState = listEstados[listEstados.lastIndex]
+				listEstados[listEstados.lastIndex] = Estado(name, (0..2).random())
+				listEstados.add(lastState)
+				mEstadoAdapter.notifyItemRangeChanged(
+					listEstados.lastIndex-1, listEstados.lastIndex)
 				binding.editTextPersonName.text.clear()
 				binding.editTextPersonName.clearFocus()
 			}
