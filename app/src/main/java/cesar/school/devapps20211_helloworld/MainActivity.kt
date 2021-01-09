@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
 		binding.listView.setOnItemClickListener { parent, view
 										  , position, id ->
 			val (nome, bandeira) = listEstados[position]
-			Toast.makeText(this, "click: $$nome $bandeira", Toast.LENGTH_SHORT).show()
+			Toast.makeText(this, "click: $nome $bandeira", Toast.LENGTH_SHORT).show()
 		}
 		binding.listView.adapter = mEstadoAdapter
 	}

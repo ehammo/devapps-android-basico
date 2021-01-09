@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import cesar.school.devapps20211_helloworld.R
@@ -13,7 +14,7 @@ import cesar.school.devapps20211_helloworld.databinding.ItemEstadoBinding
 import cesar.school.devapps20211_helloworld.model.Estado
 
 class EstadoAdapter(private val context: Context,
-                    private val estados: List<Estado>) : BaseAdapter() {
+                    private val estados: MutableList<Estado>) : BaseAdapter() {
 
 
 	private val bandeiras: TypedArray by lazy {
@@ -35,6 +36,10 @@ class EstadoAdapter(private val context: Context,
 		}
 		holder.txtName.text = estado.nome
 		holder.imgBandeira.setImageDrawable(bandeiras.getDrawable(estado.bandeira))
+		holder.button.setOnClickListener {
+			estados.removeAt(position)
+			notifyDataSetChanged()
+		}
 		return linha
 	}
 
@@ -48,6 +53,7 @@ class EstadoAdapter(private val context: Context,
 		data class ViewHolder(val view: ItemEstadoBinding) {
 			val imgBandeira: ImageView = view.imageViewFlag
 			val txtName: TextView = view.textViewEstadoNome
+			val button: Button = view.button
 		}
 	}
 }
