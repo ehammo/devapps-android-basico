@@ -1,4 +1,4 @@
-package com.pethersilva.devapps20201_helloworld
+package cesar.school.devapps20211_helloworld
 
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -9,9 +9,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import com.pethersilva.devapps20201_helloworld.adapter.EstadoAdapter
 import com.pethersilva.devapps20201_helloworld.model.Estado
-import kotlinx.android.synthetic.main.activity_main_listview.*
+
+import cesar.school.devapps20211_helloworld.databinding.ActivityMainListviewBinding
+
 
 class MainActivity : AppCompatActivity() {
+
+	private lateinit var binding : ActivityMainListviewBinding
+
 	private val listEstados = mutableListOf(
 		Estado("Paraíba", 0),
 		Estado("Pernambuco", 1),
@@ -21,20 +26,21 @@ class MainActivity : AppCompatActivity() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_main_listview)
+		binding = ActivityMainListviewBinding.inflate(layoutInflater)
+		setContentView(binding.root)
 		setupRecyclerview()
 		setupInsertButton()
 	}
 
 	private fun setupRecyclerview() {
-		recyclerView.adapter = mEstadoAdapter
+		binding.recyclerView.adapter = mEstadoAdapter
 		val layoutManager = GridLayoutManager(this, 2)
 		layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
 			override fun getSpanSize(position: Int): Int {
 				return if (position == 0) 2 else 1
 			}
 		}
-		recyclerView.layoutManager = layoutManager
+		binding.recyclerView.layoutManager = layoutManager
 	}
 
 	private fun onEstadoClickListener(estado: Estado) {
@@ -43,13 +49,13 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	private fun setupInsertButton() {
-		buttonInserir.setOnClickListener {
-			val name = editTextPersonName.text.toString()
+		binding.buttonInserir.setOnClickListener {
+			val name = binding.editTextPersonName.text.toString()
 			if (isNameValid(name)) {
 				listEstados.add(Estado(name, (0..2).random()))
 				mEstadoAdapter.notifyItemInserted(listEstados.lastIndex)
-				editTextPersonName.text.clear()
-				editTextPersonName.clearFocus()
+				binding.editTextPersonName.text.clear()
+				binding.editTextPersonName.clearFocus()
 			}
 		}
 	}
