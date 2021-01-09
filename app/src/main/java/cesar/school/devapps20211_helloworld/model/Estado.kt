@@ -1,3 +1,3 @@
-package com.pethersilva.devapps20201_helloworld.model
+package cesar.school.devapps20211_helloworld.model
 
 data class Estado(val nome: String, var bandeira: Int)

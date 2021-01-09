@@ -10,7 +10,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import cesar.school.devapps20211_helloworld.R
 import cesar.school.devapps20211_helloworld.databinding.ItemEstadoBinding
-import com.pethersilva.devapps20201_helloworld.model.Estado
+import cesar.school.devapps20211_helloworld.model.Estado
 
 class EstadoAdapter(private val context: Context,
                     private val estados: List<Estado>) : BaseAdapter() {

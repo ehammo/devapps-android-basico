@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.pethersilva.devapps20201_helloworld.adapter.EstadoAdapter
-import com.pethersilva.devapps20201_helloworld.model.Estado
+import cesar.school.devapps20211_helloworld.model.Estado
 import cesar.school.devapps20211_helloworld.databinding.ActivityMainListviewBinding
 
 class MainActivity : AppCompatActivity() {
@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
 		setupListview()
 		setupInsertButton()
 	}
-
 
 	private fun setupInsertButton() {
 		binding.buttonInserir.setOnClickListener {
