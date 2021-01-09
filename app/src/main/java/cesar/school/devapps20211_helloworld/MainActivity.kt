@@ -1,12 +1,11 @@
-package com.pethersilva.devapps20201_helloworld
+package cesar.school.devapps20211_helloworld
 
 import android.os.Bundle
-import android.widget.ListView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.pethersilva.devapps20201_helloworld.adapter.EstadoAdapter
 import com.pethersilva.devapps20201_helloworld.model.Estado
-import kotlinx.android.synthetic.main.activity_main_listview.*
+import cesar.school.devapps20211_helloworld.databinding.ActivityMainListviewBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,17 +16,22 @@ class MainActivity : AppCompatActivity() {
 	)
 
 	private val mEstadoAdapter by lazy { EstadoAdapter(this, listEstados) }
+	private lateinit var binding : ActivityMainListviewBinding
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		setContentView(R.layout.activity_main_listview)
+		binding = ActivityMainListviewBinding.inflate(layoutInflater)
+		setContentView(binding.root)
 		setupListview()
 		setupInsertButton()
 	}
 
+
 	private fun setupInsertButton() {
-		buttonInserir.setOnClickListener {
-			val name = editTextPersonName.text.toString()
+
+		binding.buttonInserir.setOnClickListener {
+			val name = binding.editTextPersonName.text.toString()
+
 			if (isNameValid(name)) {
 				listEstados.add(Estado(name, (0..2).random()))
 				mEstadoAdapter.notifyDataSetChanged()
@@ -38,11 +42,11 @@ class MainActivity : AppCompatActivity() {
 	private fun isNameValid(name: String): Boolean = !name.isNullOrEmpty()
 
 	private fun setupListview() {
-		listView.setOnItemClickListener { parent, view
+		binding.listView.setOnItemClickListener { parent, view
 										  , position, id ->
 			val (nome, bandeira) = listEstados[position]
 			Toast.makeText(this, "click: $$nome $bandeira", Toast.LENGTH_SHORT).show()
 		}
-		listView.adapter = mEstadoAdapter
+		binding.listView.adapter = mEstadoAdapter
 	}
 }
