@@ -14,7 +14,8 @@ import cesar.school.devapps20211_helloworld.databinding.ItemEstadoBinding
 import cesar.school.devapps20211_helloworld.model.Estado
 
 class EstadoAdapter(private val context: Context,
-                    private val estados: MutableList<Estado>) : BaseAdapter() {
+                    private val estados: MutableList<Estado>,
+                    private val onClickListener: (Estado) -> Unit ) : BaseAdapter() {
 
 
 	private val bandeiras: TypedArray by lazy {
@@ -36,6 +37,9 @@ class EstadoAdapter(private val context: Context,
 		}
 		holder.txtName.text = estado.nome
 		holder.imgBandeira.setImageDrawable(bandeiras.getDrawable(estado.bandeira))
+		holder.imgBandeira.setOnClickListener {
+			onClickListener(estado)
+		}
 		holder.button.setOnClickListener {
 			estados.removeAt(position)
 			notifyDataSetChanged()
