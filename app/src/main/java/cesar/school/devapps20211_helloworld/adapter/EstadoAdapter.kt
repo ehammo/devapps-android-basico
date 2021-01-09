@@ -8,12 +8,14 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import com.pethersilva.devapps20201_helloworld.R
+import cesar.school.devapps20211_helloworld.R
+import cesar.school.devapps20211_helloworld.databinding.ItemEstadoBinding
 import com.pethersilva.devapps20201_helloworld.model.Estado
-import kotlinx.android.synthetic.main.item_estado.view.*
 
 class EstadoAdapter(private val context: Context,
                     private val estados: List<Estado>) : BaseAdapter() {
+
+
 	private val bandeiras: TypedArray by lazy {
 		context.resources.obtainTypedArray(R.array.bandeiras)
 	}
@@ -23,9 +25,9 @@ class EstadoAdapter(private val context: Context,
 		val holder: ViewHolder
 		val linha: View
 		if (view == null) {
-			linha = LayoutInflater.from(context).inflate(R.layout.item_estado,
-				parent, false)
-			holder = ViewHolder(linha)
+			val binding = ItemEstadoBinding.inflate(LayoutInflater.from(context))
+			linha = binding.root
+			holder = ViewHolder(binding)
 			linha.tag = holder
 		} else {
 			linha = view
@@ -43,7 +45,7 @@ class EstadoAdapter(private val context: Context,
 	override fun getCount() = estados.size
 
 	companion object {
-		data class ViewHolder(val view: View) {
+		data class ViewHolder(val view: ItemEstadoBinding) {
 			val imgBandeira: ImageView = view.imageViewFlag
 			val txtName: TextView = view.textViewEstadoNome
 		}

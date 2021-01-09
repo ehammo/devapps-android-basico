@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
 
 
 	private fun setupInsertButton() {
-
 		binding.buttonInserir.setOnClickListener {
 			val name = binding.editTextPersonName.text.toString()
 
