@@ -1,11 +1,11 @@
-package com.pethersilva.devapps20201_helloworld
+package cesar.school.devapps20211_helloworld
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_main.*
+import cesar.school.devapps20211_helloworld.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 	companion object {
@@ -15,13 +15,16 @@ class MainActivity : AppCompatActivity() {
 		const val MAIN_ACTIVITY_SUM_RESULT_EXTRA_ID = "sum_result_extra"
 	}
 
+	private lateinit var binding : ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+		binding = ActivityMainBinding.inflate(layoutInflater)
+		setContentView(binding.root)
 
-		buttonSum.setOnClickListener {
-			val value01 = editTextValue01.text.toString()
-			val value02 = editTextValue02.text.toString()
+		binding.buttonSum.setOnClickListener {
+			val value01 = binding.editTextValue01.text.toString()
+			val value02 = binding.editTextValue02.text.toString()
 			if (isValid(value01) && isValid(value02)) {
 				val secondActivity = Intent(this, SecondActivity::class.java)
 				secondActivity.putExtra(MAIN_ACTIVITY_VALUE01_EXTRA_ID, value01)

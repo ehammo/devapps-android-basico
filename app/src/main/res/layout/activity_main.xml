@@ -45,7 +45,7 @@
 			android:layout_height="wrap_content"
 			android:ems="10"
 			android:hint="@string/please_add_value01"
-			android:inputType="number"
+			android:inputType="number|numberSigned"
 			app:layout_constraintStart_toStartOf="@+id/editTextValue02"
 			app:layout_constraintTop_toTopOf="@+id/topGuideline" />
 
@@ -55,7 +55,8 @@
 			android:layout_height="wrap_content"
 			android:ems="10"
 			android:hint="@string/please_add_value02"
-			android:inputType="number"
+			android:inputType="number|numberSigned"
+			app:layout_constraintBottom_toBottomOf="@id/bottomGuideline"
 			app:layout_constraintStart_toStartOf="@+id/startGuideline"
 			app:layout_constraintTop_toBottomOf="@+id/editTextValue01" />
 
@@ -65,6 +66,8 @@
 			android:layout_height="wrap_content"
 			android:text="@string/button_sum"
 			app:layout_constraintStart_toEndOf="@+id/editTextValue02"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintBottom_toBottomOf="parent"
 			tools:layout_editor_absoluteY="59dp" />
 
 	</androidx.constraintlayout.widget.ConstraintLayout>
