@@ -1,5 +1,5 @@
 <resources>
-	<string name="app_name" translatable="false">DevApps2020.1-HelloWorld</string>
+	<string name="app_name" translatable="false">DevApps2021.1-HelloWorld</string>
 	<string name="app_label">My Label</string>
 	<string name="main_activity_hello_world">Hello World!</string>
 	<string name="button">Click Here</string>
@@ -7,6 +7,6 @@
 	<string name="button_onclick">On Click</string>
 	<string name="headline">Hello Word!</string>
 	<string name="second_activity_message">Welcome to second Activity %1$s</string>
-	<string name="please_add_your_name" translatable="false">Please add your name</string>
+	<string name="please_add_meeting_title" translatable="false">Please add your meeting title</string>
 	<string name="main_activity_set_alarm">Set Alarm</string>
 </resources>
