@@ -27,7 +27,8 @@ class EstadoAdapter(private val context: Context,
 		val holder: ViewHolder
 		val linha: View
 		if (view == null) {
-			val binding = ItemEstadoBinding.inflate(LayoutInflater.from(context))
+			val view = LayoutInflater.from(context).inflate(R.layout.item_estado, parent, false)
+			val binding = ItemEstadoBinding.bind(view)
 			linha = binding.root
 			holder = ViewHolder(binding)
 			linha.tag = holder
