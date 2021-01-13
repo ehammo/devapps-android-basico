@@ -21,7 +21,8 @@ class EstadoAdapter(private val context: Context,
 	}
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-		val binding = ItemEstadoBinding.inflate(LayoutInflater.from(parent.context))
+		val view = LayoutInflater.from(parent.context).inflate(R.layout.item_estado, parent, false)
+		val binding = ItemEstadoBinding.bind(view)
 		val vh = VH(binding)
 		vh.itemView.setOnClickListener {
 			val estado = estados[vh.adapterPosition]

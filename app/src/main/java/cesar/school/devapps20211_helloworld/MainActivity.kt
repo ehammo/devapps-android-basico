@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import cesar.school.devapps20211_helloworld.adapter.EstadoAdapter
 import cesar.school.devapps20211_helloworld.model.Estado
 import cesar.school.devapps20211_helloworld.databinding.ActivityMainListviewBinding
