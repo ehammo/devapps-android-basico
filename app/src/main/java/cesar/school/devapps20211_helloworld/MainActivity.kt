@@ -1,6 +1,7 @@
 package cesar.school.devapps20211_helloworld
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -59,5 +60,26 @@ class MainActivity : AppCompatActivity() {
 			}
 		}
 	}
+
 	private fun isNameValid(name: String): Boolean = !name.isNullOrEmpty()
+
+	override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
+		R.id.action_settings -> {
+			// User chose the "Settings" item, show the app settings UI...
+			true
+		}
+
+		R.id.action_favorite -> {
+			// User chose the "Favorite" action, mark the current item
+			// as a favorite...
+			true
+		}
+
+		else -> {
+			// If we got here, the user's action was not recognized.
+			// Invoke the superclass to handle it.
+			super.onOptionsItemSelected(item)
+		}
+	}
+
 }

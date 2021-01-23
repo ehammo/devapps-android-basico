@@ -10,4 +10,6 @@
 	<string name="main_activity_insert_state_hint">Type state name</string>
 	<string name="second_activity_message">Welcome to second Activity %1$s</string>
 	<string name="please_add_your_name" translatable="false">Please add your name</string>
+    <string name="action_settings">settings</string>
+	<string name="action_favorite">favorite</string>
 </resources>
