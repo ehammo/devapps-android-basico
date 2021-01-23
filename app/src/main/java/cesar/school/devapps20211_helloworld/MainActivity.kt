@@ -3,8 +3,11 @@ package cesar.school.devapps20211_helloworld
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.CheckBox
 import android.widget.TimePicker
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -39,16 +42,25 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	private fun setupAlertDialog() {
-		val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+		val view = layoutInflater.inflate(R.layout.custom_dialog, null)
+		val builder: AlertDialog.Builder = AlertDialog.Builder(this, R.style.AppTheme_AlertDialog)
 		builder.apply {
+			setView(view)
 			setTitle("Aviso!")
 			setMessage("Estado duplicado")
 			setCancelable(true)
-			setPositiveButton("Ok") { dialog, _ ->
-				dialog.dismiss()
-			}
 		}
 		mAvisoAlertDialog = builder.create()
+		view.findViewById<Button>(R.id.button).setOnClickListener { view ->
+			mAvisoAlertDialog.dismiss()
+		}
+		view.findViewById<CheckBox>(R.id.checkbox).setOnCheckedChangeListener { buttonView, isChecked ->
+			if (isChecked) {
+
+			} else {
+
+			}
+		}
 	}
 
 	private fun setupRecyclerview() {
