@@ -2,7 +2,6 @@ package cesar.school.devapps20211_helloworld
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -14,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import cesar.school.devapps20211_helloworld.adapter.EstadoAdapter
 import cesar.school.devapps20211_helloworld.databinding.ActivityMainBinding
 import cesar.school.devapps20211_helloworld.model.Estado
+import java.util.stream.Collectors
 
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
 		Estado("Rio Grande do Norte", 2)
 	)
 	private val mEstadoAdapter = EstadoAdapter(this,listEstados, this::onEstadoClickListener)
+	private lateinit var mAvisoAlertDialog : AlertDialog
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
@@ -34,6 +35,20 @@ class MainActivity : AppCompatActivity() {
 		setSupportActionBar(binding.myToolbar)
 		setupRecyclerview()
 		setupInsertButton()
+		setupAlertDialog()
+	}
+
+	private fun setupAlertDialog() {
+		val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+		builder.apply {
+			setTitle("Aviso!")
+			setMessage("Estado duplicado")
+			setCancelable(true)
+			setPositiveButton("Ok") { dialog, _ ->
+				dialog.dismiss()
+			}
+		}
+		mAvisoAlertDialog = builder.create()
 	}
 
 	private fun setupRecyclerview() {
@@ -56,15 +71,23 @@ class MainActivity : AppCompatActivity() {
 		binding.buttonInserir.setOnClickListener {
 			val name = binding.editTextPersonName.text.toString()
 			if (isNameValid(name)) {
-				val lastState = listEstados[listEstados.lastIndex]
-				listEstados[listEstados.lastIndex] = Estado(name, (0..2).random())
-				listEstados.add(lastState)
-				mEstadoAdapter.notifyItemRangeChanged(
-					listEstados.lastIndex-1, listEstados.lastIndex)
-				binding.editTextPersonName.text.clear()
-				binding.editTextPersonName.clearFocus()
+				if (isDuplicateState(name)) {
+					mAvisoAlertDialog.show()
+				} else {
+					val lastState = listEstados[listEstados.lastIndex]
+					listEstados[listEstados.lastIndex] = Estado(name, (0..2).random())
+					listEstados.add(lastState)
+					mEstadoAdapter.notifyItemRangeChanged(
+						listEstados.lastIndex-1, listEstados.lastIndex)
+					binding.editTextPersonName.text.clear()
+					binding.editTextPersonName.clearFocus()
+				}
 			}
 		}
+	}
+
+	private fun isDuplicateState(name: String): Boolean {
+		return listEstados.find { it.nome == name } != null
 	}
 
 	private fun isNameValid(name: String): Boolean = !name.isNullOrEmpty()
@@ -91,7 +114,7 @@ class MainActivity : AppCompatActivity() {
 			}
 			// Mes vai de 0-11
 			val datePickerDialog = DatePickerDialog(this, onDateListener, 2021, 0, 23)
-			datePickerDialog.show()
+//			datePickerDialog.show()
 
 			val builder: AlertDialog.Builder = AlertDialog.Builder(this)
 			builder.apply {
