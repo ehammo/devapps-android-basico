@@ -1,5 +1,6 @@
 package cesar.school.devapps20211_helloworld
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -7,13 +8,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import cesar.school.devapps20211_helloworld.adapter.EstadoAdapter
+import cesar.school.devapps20211_helloworld.databinding.ActivityMainBinding
 import cesar.school.devapps20211_helloworld.model.Estado
-import cesar.school.devapps20211_helloworld.databinding.ActivityMainListviewBinding
 
 
 class MainActivity : AppCompatActivity() {
 
-	private lateinit var binding : ActivityMainListviewBinding
+	private lateinit var binding : ActivityMainBinding
 
 	private val listEstados = mutableListOf(
 		Estado("Paraíba", 0),
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		binding = ActivityMainListviewBinding.inflate(layoutInflater)
+		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 		setSupportActionBar(binding.myToolbar)
 		setupRecyclerview()
@@ -65,14 +66,8 @@ class MainActivity : AppCompatActivity() {
 	private fun isNameValid(name: String): Boolean = !name.isNullOrEmpty()
 
 	override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
-		R.id.action_settings -> {
-			// User chose the "Settings" item, show the app settings UI...
-			true
-		}
-
-		R.id.action_favorite -> {
-			// User chose the "Favorite" action, mark the current item
-			// as a favorite...
+		R.id.action_capitais -> {
+			startActivity(Intent(this, CapitaisActivity::class.java))
 			true
 		}
 
