@@ -22,6 +22,9 @@ class CapitaisActivity : AppCompatActivity() {
         binding = ActivityCapitalBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.myToolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        binding.myToolbar.setTitleTextColor(getColor(R.color.white))
+
         setupRecyclerview()
     }
 
