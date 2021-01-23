@@ -10,19 +10,20 @@ import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import cesar.school.devapps20211_helloworld.MainActivity
 import cesar.school.devapps20211_helloworld.R
 import cesar.school.devapps20211_helloworld.databinding.ItemEstadoBinding
 import cesar.school.devapps20211_helloworld.model.Estado
 class EstadoAdapter(
 	private val context: Context,
-	private val estados: MutableList<Estado>,
+	private val originalList: MutableList<Estado>, // {"alou", "oi", "ola", "oligarquia"}
 	private val callback: (Estado) -> Unit
 ) : RecyclerView.Adapter<EstadoAdapter.VH>(), Filterable {
 
-	private val originalList: MutableList<Estado> = mutableListOf()
+	private val estados: MutableList<Estado> = mutableListOf()
 
 	init {
-		originalList.addAll(estados)
+		estados.addAll(originalList)
 	}
 
 
@@ -79,11 +80,10 @@ class EstadoAdapter(
 
 			private fun getFilteredResults(constraint: String): List<Estado> {
 				val results = ArrayList<Estado>()
-
-				for (item in originalList) {
-					if (item.nome.contains(constraint, true)) {
-						results.add(item)
-					}
+				if (constraint == MainActivity.REMOVE_DUP) {
+					results.addAll(originalList.distinct())
+				} else {
+					results.addAll(originalList)
 				}
 				return results
 			}

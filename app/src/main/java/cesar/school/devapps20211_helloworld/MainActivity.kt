@@ -6,8 +6,11 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import cesar.school.devapps20211_helloworld.adapter.EstadoAdapter
 import cesar.school.devapps20211_helloworld.databinding.ActivityMainBinding
 import cesar.school.devapps20211_helloworld.model.Estado
@@ -20,12 +23,25 @@ class MainActivity : AppCompatActivity() {
 	private val listEstados = mutableListOf(
 		Estado("Paraíba", 0),
 		Estado("Pernambuco", 1),
+		Estado("Rio Grande do Norte", 2),
+		Estado("Paraíba", 0),
+		Estado("Pernambuco", 1),
 		Estado("Rio Grande do Norte", 2)
 	)
 	private val mEstadoAdapter = EstadoAdapter(this,listEstados, this::onEstadoClickListener)
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+
+
+
+//		exampleBinding = ActivityExampleBinding.inflate(layoutInflater)
+		//we need to bind the root layout with our binder for external layout
+//		toolBarBinding = ToolbarCustomBinding.bind(exampleBinding.root)
+//		setContentView(exampleBinding.root)
+		//we will be able to access included in merge layout views like this
+//		val toolbar = toolBarBinding.toolBar
+
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 		setSupportActionBar(binding.myToolbar)
@@ -35,13 +51,7 @@ class MainActivity : AppCompatActivity() {
 
 	private fun setupRecyclerview() {
 		binding.recyclerView.adapter = mEstadoAdapter
-		val layoutManager = GridLayoutManager(this, 2)
-		layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-			override fun getSpanSize(position: Int): Int {
-				return if (position == 0) 2 else 1
-			}
-		}
-		binding.recyclerView.layoutManager = layoutManager
+		binding.recyclerView.layoutManager = LinearLayoutManager(this)
 	}
 
 	private fun onEstadoClickListener(estado: Estado) {
@@ -73,13 +83,25 @@ class MainActivity : AppCompatActivity() {
 		}
 
 		R.id.action_filter -> {
+			val builder = AlertDialog.Builder(this)
+			val view = layoutInflater.inflate(R.layout.custom_dialog, null)
+			val switch = view.findViewById<SwitchCompat>(R.id.switchCompat)
 			if (mEstadoAdapter.isFiltered()) {
-				Log.d("teste", "isFiltered")
-				mEstadoAdapter.filter.filter("")
-			} else {
-				Log.d("teste", "is not Filtered")
-				mEstadoAdapter.filter.filter("P")
+				switch.isChecked = true
 			}
+			builder.apply {
+				setView(view)
+				setPositiveButton("ok") { dialog, _ ->
+					val checked = switch.isChecked
+					if (checked) {
+						mEstadoAdapter.filter.filter(REMOVE_DUP)
+					} else {
+						mEstadoAdapter.filter.filter("")
+					}
+					dialog.dismiss()
+				}
+			}
+			builder.create().show()
 			true
 		}
 
@@ -93,5 +115,9 @@ class MainActivity : AppCompatActivity() {
 	override fun onCreateOptionsMenu(menu: Menu?): Boolean {
 		menuInflater.inflate(R.menu.main_menu, menu)
 		return super.onCreateOptionsMenu(menu)
+	}
+
+	companion object {
+		val REMOVE_DUP = "REMOVE_DUP"
 	}
 }
