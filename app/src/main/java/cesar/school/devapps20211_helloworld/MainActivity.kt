@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 		super.onCreate(savedInstanceState)
 		binding = ActivityMainListviewBinding.inflate(layoutInflater)
 		setContentView(binding.root)
+		setSupportActionBar(binding.myToolbar)
 		setupRecyclerview()
 		setupInsertButton()
 	}

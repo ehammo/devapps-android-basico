@@ -4,7 +4,17 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="com.pethersilva.devapps20201_helloworld.SecondActivity">
+	tools:context=".SecondActivity">
+
+	<androidx.appcompat.widget.Toolbar
+		android:id="@+id/myToolbar"
+		android:layout_width="match_parent"
+		android:layout_height="?attr/actionBarSize"
+		android:elevation="4dp"
+		android:background="@color/colorPrimaryDark"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintLeft_toLeftOf="parent"
+		/>
 
 	<TextView
 		android:id="@+id/textView"
@@ -13,5 +23,5 @@
 		android:text="@string/second_activity_message"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent" />
+		app:layout_constraintTop_toBottomOf="@id/myToolbar" />
 </androidx.constraintlayout.widget.ConstraintLayout>
