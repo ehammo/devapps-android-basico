@@ -1,5 +1,6 @@
 package cesar.school.devapps20211_helloworld
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -41,8 +42,9 @@ class MainActivity : AppCompatActivity() {
 	}
 
 	private fun onEstadoClickListener(estado: Estado) {
-		Toast.makeText(this, "Estado: ${estado.nome} Bandeira: ${estado.bandeira}",
-			Toast.LENGTH_SHORT).show()
+		val intent = Intent(this, SecondActivity::class.java)
+		intent.putExtra(ESTADO_EXTRA, estado.nome)
+		startActivity(intent)
 	}
 
 	private fun setupInsertButton() {
@@ -60,4 +62,8 @@ class MainActivity : AppCompatActivity() {
 		}
 	}
 	private fun isNameValid(name: String): Boolean = !name.isNullOrEmpty()
+
+	companion object {
+		val ESTADO_EXTRA = "extra_estado"
+	}
 }
