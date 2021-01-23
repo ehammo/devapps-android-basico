@@ -32,16 +32,6 @@ class MainActivity : AppCompatActivity() {
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-
-
-
-//		exampleBinding = ActivityExampleBinding.inflate(layoutInflater)
-		//we need to bind the root layout with our binder for external layout
-//		toolBarBinding = ToolbarCustomBinding.bind(exampleBinding.root)
-//		setContentView(exampleBinding.root)
-		//we will be able to access included in merge layout views like this
-//		val toolbar = toolBarBinding.toolBar
-
 		binding = ActivityMainBinding.inflate(layoutInflater)
 		setContentView(binding.root)
 		setSupportActionBar(binding.myToolbar)
