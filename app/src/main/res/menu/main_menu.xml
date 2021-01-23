@@ -9,4 +9,10 @@
         android:title="@string/action_capitais"
         app:showAsAction="ifRoom"/>
 
+    <item
+        android:id="@+id/action_filter"
+        android:icon="@drawable/iv_filter"
+        android:title="@string/action_filter"
+        app:showAsAction="ifRoom"/>
+
 </menu>

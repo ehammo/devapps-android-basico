@@ -11,4 +11,5 @@
 	<string name="second_activity_message">Welcome to second Activity %1$s</string>
 	<string name="please_add_your_name" translatable="false">Please add your name</string>
     <string name="action_capitais">capitais</string>
+    <string name="action_filter">Filter</string>
 </resources>

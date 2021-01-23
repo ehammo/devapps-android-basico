@@ -2,6 +2,7 @@ package cesar.school.devapps20211_helloworld
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -68,6 +69,17 @@ class MainActivity : AppCompatActivity() {
 	override fun onOptionsItemSelected(item: MenuItem) = when (item.itemId) {
 		R.id.action_capitais -> {
 			startActivity(Intent(this, CapitaisActivity::class.java))
+			true
+		}
+
+		R.id.action_filter -> {
+			if (mEstadoAdapter.isFiltered()) {
+				Log.d("teste", "isFiltered")
+				mEstadoAdapter.filter.filter("")
+			} else {
+				Log.d("teste", "is not Filtered")
+				mEstadoAdapter.filter.filter("P")
+			}
 			true
 		}
 
